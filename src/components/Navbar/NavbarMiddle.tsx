@@ -5,12 +5,14 @@ import SearchIcon from '../../icons/SearchIcon'
 import UserIcon from '../../icons/UserIcon'
 import WebsiteLogo from '../../icons/WebsiteLogo'
 import SearchBox from '../SearchBox/SearchBox'
+import MenuIcon from '@mui/icons-material/Menu'
 
 const generateStyle = () => {
   return {
     rootContainerStyle: {
       display: 'flex',
       alignItems: 'center',
+      paddingTop: '8px',
     },
     searchboxContainerStyle: {
       flexGrow: 1,
@@ -23,7 +25,10 @@ const generateStyle = () => {
       height: '24px',
     },
     iconStyle: {
-      margin: '0 20px',
+      marginLeft: '20px',
+    },
+    menuIconStyle: {
+      color: '#151515',
     },
   }
 }
@@ -52,11 +57,14 @@ const NavbarMiddle = () => {
           <IconButton sx={classes.iconStyle}>
             <UserIcon />
           </IconButton>
-          <IconButton>
+          <IconButton sx={classes.iconStyle}>
             <Badge badgeContent={4} color='primary'>
               <CartIcon />
             </Badge>
           </IconButton>
+          <CustomSearchIconButton sx={classes.iconStyle}>
+            <MenuIcon sx={classes.menuIconStyle} />
+          </CustomSearchIconButton>
         </Box>
       </Box>
     </Container>
