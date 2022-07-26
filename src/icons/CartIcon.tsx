@@ -1,6 +1,6 @@
 import CustomIconType from '../@types/CustomIconType'
 
-const WebsiteLogo: React.FC<CustomIconType> = ({
+const CartIcon: React.FC<CustomIconType> = ({
   color,
   style,
 }: CustomIconType) => {
@@ -38,4 +38,4 @@ const WebsiteLogo: React.FC<CustomIconType> = ({
   )
 }
 
-export default WebsiteLogo
+export default CartIcon

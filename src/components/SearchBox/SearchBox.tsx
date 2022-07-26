@@ -5,6 +5,7 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  styled,
   TextField,
   Theme,
   useTheme,
@@ -14,13 +15,8 @@ import SearchIcon from '../../icons/SearchIcon'
 
 const generateStyles = (theme: Theme) => {
   return {
-    rootContainer: {
-      height: '100px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
     searchContainer: {
+      width: '500px',
       backgroundColor: '#F9F9F9',
       border: '1px solid #D1D1D1',
       borderRadius: '12px',
@@ -84,6 +80,12 @@ const data = [
   },
 ]
 
+const ResponsiveFormControl = styled(FormControl)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
+}))
+
 const SearchBox = () => {
   const theme = useTheme()
   const classes = generateStyles(theme)
@@ -98,38 +100,36 @@ const SearchBox = () => {
   }
 
   return (
-    <Box sx={classes.rootContainer}>
-      <FormControl sx={classes.searchContainer}>
-        <Select
-          onChange={(event: SelectChangeEvent) =>
-            handleChange(event, setDropDownValue)
-          }
-          value={dropDownValue}
-          sx={classes.selectStyle}
-        >
-          {data.map((item) => (
-            <MenuItem key={item.id} value={item.value}>
-              {item.value}
-            </MenuItem>
-          ))}
-        </Select>
-        <Box sx={classes.verticalDivider}></Box>
-        <TextField
-          variant='outlined'
-          sx={classes.inputFieldStyle}
-          placeholder='Search Products, categories...'
-          inputProps={{
-            style: {
-              height: '7px',
-              fontSize: '14px',
-            },
-          }}
-        />
-        <IconButton aria-label='search'>
-          <SearchIcon style={classes.iconStyle} />
-        </IconButton>
-      </FormControl>
-    </Box>
+    <ResponsiveFormControl sx={classes.searchContainer}>
+      <Select
+        onChange={(event: SelectChangeEvent) =>
+          handleChange(event, setDropDownValue)
+        }
+        value={dropDownValue}
+        sx={classes.selectStyle}
+      >
+        {data.map((item) => (
+          <MenuItem key={item.id} value={item.value}>
+            {item.value}
+          </MenuItem>
+        ))}
+      </Select>
+      <Box sx={classes.verticalDivider}></Box>
+      <TextField
+        variant='outlined'
+        sx={classes.inputFieldStyle}
+        placeholder='Search Products, categories...'
+        inputProps={{
+          style: {
+            height: '7px',
+            fontSize: '14px',
+          },
+        }}
+      />
+      <IconButton aria-label='search'>
+        <SearchIcon style={classes.iconStyle} />
+      </IconButton>
+    </ResponsiveFormControl>
   )
 }
 
