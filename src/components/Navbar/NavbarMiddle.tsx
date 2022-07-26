@@ -1,4 +1,12 @@
-import { Badge, Box, Container, IconButton, styled } from '@mui/material'
+import {
+  Badge,
+  Box,
+  Container,
+  IconButton,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 import React from 'react'
 import CartIcon from '../../icons/CartIcon'
 import SearchIcon from '../../icons/SearchIcon'
@@ -13,6 +21,7 @@ const generateStyle = () => {
       display: 'flex',
       alignItems: 'center',
       paddingTop: '8px',
+      marginBottom: '32px',
     },
     searchboxContainerStyle: {
       flexGrow: 1,
@@ -33,38 +42,53 @@ const generateStyle = () => {
   }
 }
 
-const CustomSearchIconButton = styled(IconButton)(({ theme }) => ({
+const CustomInvisibleIconButton = styled(IconButton)(({ theme }) => ({
   display: 'none',
   [theme.breakpoints.down('md')]: {
     display: 'inline-flex',
+    marginLeft: '0',
+  },
+}))
+
+const CustomVisibleIconButton = styled(IconButton)(({ theme }) => ({
+  marginLeft: '20px',
+  [theme.breakpoints.down('md')]: {
+    marginLeft: '0',
   },
 }))
 
 const NavbarMiddle = () => {
   const classes = generateStyle()
 
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
     <Container maxWidth='lg'>
       <Box sx={classes.rootContainerStyle}>
-        <WebsiteLogo />
+        {!matches ? (
+          <WebsiteLogo />
+        ) : (
+          <WebsiteLogo style={{ width: '140px', height: '14px' }} />
+        )}
         <Box sx={classes.searchboxContainerStyle}>
           <SearchBox />
         </Box>
         <Box>
-          <CustomSearchIconButton>
+          <CustomInvisibleIconButton>
             <SearchIcon style={classes.searchIconStyle} />
-          </CustomSearchIconButton>
-          <IconButton sx={classes.iconStyle}>
+          </CustomInvisibleIconButton>
+          <CustomVisibleIconButton>
             <UserIcon />
-          </IconButton>
-          <IconButton sx={classes.iconStyle}>
+          </CustomVisibleIconButton>
+          <CustomVisibleIconButton>
             <Badge badgeContent={4} color='primary'>
               <CartIcon />
             </Badge>
-          </IconButton>
-          <CustomSearchIconButton sx={classes.iconStyle}>
+          </CustomVisibleIconButton>
+          <CustomInvisibleIconButton>
             <MenuIcon sx={classes.menuIconStyle} />
-          </CustomSearchIconButton>
+          </CustomInvisibleIconButton>
         </Box>
       </Box>
     </Container>

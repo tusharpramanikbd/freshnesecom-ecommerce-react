@@ -16,7 +16,7 @@ import SearchIcon from '../../icons/SearchIcon'
 const generateStyles = (theme: Theme) => {
   return {
     searchContainer: {
-      width: '500px',
+      width: '510px',
       backgroundColor: '#F9F9F9',
       border: '1px solid #D1D1D1',
       borderRadius: '12px',
@@ -26,7 +26,7 @@ const generateStyles = (theme: Theme) => {
       alignItems: 'center',
     },
     selectStyle: {
-      width: '210px',
+      width: '220px',
       height: '40px',
       fontWeight: 'bold',
       textAlign: 'center',

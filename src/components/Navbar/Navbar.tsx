@@ -1,5 +1,6 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
+import NavbarBottom from './NavbarBottom'
 import NavbarMiddle from './NavbarMiddle'
 import NavbarTop from './NavbarTop'
 
@@ -11,6 +12,7 @@ const Navbar = () => {
     <Box>
       {!matches && <NavbarTop />}
       <NavbarMiddle />
+      {!matches && <NavbarBottom />}
     </Box>
   )
 }
