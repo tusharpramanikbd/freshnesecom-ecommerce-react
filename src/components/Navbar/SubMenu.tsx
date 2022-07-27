@@ -38,13 +38,18 @@ const generateStyle = (top: number | null, left: number | null) => {
 }
 
 const SubMenu = () => {
-  const { top, left } = useAppSelector(subMenuSelector)
+  const { top, left, subMenus } = useAppSelector(subMenuSelector)
 
   const classes = generateStyle(top, left)
 
   return (
     <Box sx={classes.rootContainerStyle}>
-      <Typography sx={classes.textStyle}>This is Sub Menu</Typography>
+      {subMenus &&
+        subMenus.map((item) => (
+          <Typography key={item.id} sx={classes.textStyle}>
+            {item.subMenu}
+          </Typography>
+        ))}
     </Box>
   )
 }

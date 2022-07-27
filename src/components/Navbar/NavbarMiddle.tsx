@@ -14,6 +14,8 @@ import UserIcon from '../../icons/UserIcon'
 import WebsiteLogo from '../../icons/WebsiteLogo'
 import SearchBox from '../SearchBox/SearchBox'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useAppDispatch } from '../../app/reduxHooks'
+import { setIsDrawerOpen } from '../../features/LeftDrawer/leftDrawerSlice'
 
 const generateStyle = () => {
   return {
@@ -21,7 +23,7 @@ const generateStyle = () => {
       display: 'flex',
       alignItems: 'center',
       paddingTop: '8px',
-      marginBottom: '32px',
+      marginBottom: '16px',
     },
     searchboxContainerStyle: {
       flexGrow: 1,
@@ -63,6 +65,12 @@ const NavbarMiddle = () => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
+  const dispatch = useAppDispatch()
+
+  const menuIconClickHandler = () => {
+    dispatch(setIsDrawerOpen({ isDrawerOpen: true }))
+  }
+
   return (
     <Container maxWidth='lg'>
       <Box sx={classes.rootContainerStyle}>
@@ -86,7 +94,7 @@ const NavbarMiddle = () => {
               <CartIcon />
             </Badge>
           </CustomVisibleIconButton>
-          <CustomInvisibleIconButton>
+          <CustomInvisibleIconButton onClick={menuIconClickHandler}>
             <MenuIcon sx={classes.menuIconStyle} />
           </CustomInvisibleIconButton>
         </Box>
