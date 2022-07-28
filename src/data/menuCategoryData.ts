@@ -2,6 +2,7 @@ const menuCategoryData = [
   {
     id: '1',
     menu: 'Bakery',
+    link: '/bakery',
     subMenus: [
       {
         id: '1',
@@ -28,6 +29,7 @@ const menuCategoryData = [
   {
     id: '2',
     menu: 'Fruit and vegetables',
+    link: '/fruitsandvegetable',
     subMenus: [
       {
         id: '1',
@@ -54,6 +56,7 @@ const menuCategoryData = [
   {
     id: '3',
     menu: 'Meat and fish',
+    link: '/meatandfish',
     subMenus: [
       {
         id: '1',
@@ -80,6 +83,7 @@ const menuCategoryData = [
   {
     id: '4',
     menu: 'Drinks',
+    link: '/drinks',
     subMenus: [
       {
         id: '1',
@@ -106,6 +110,7 @@ const menuCategoryData = [
   {
     id: '5',
     menu: 'Kitchen',
+    link: '/kitchen',
     subMenus: [
       {
         id: '1',
@@ -132,6 +137,7 @@ const menuCategoryData = [
   {
     id: '6',
     menu: 'Special nutrition',
+    link: '/specialnutrition',
     subMenus: [
       {
         id: '1',
@@ -158,6 +164,7 @@ const menuCategoryData = [
   {
     id: '7',
     menu: 'Baby',
+    link: '/baby',
     subMenus: [
       {
         id: '1',
@@ -184,6 +191,7 @@ const menuCategoryData = [
   {
     id: '8',
     menu: 'Pharmacy',
+    link: '/pharmacy',
     subMenus: [
       {
         id: '1',

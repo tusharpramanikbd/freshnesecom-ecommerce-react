@@ -15,7 +15,9 @@ import WebsiteLogo from '../../icons/WebsiteLogo'
 import SearchBox from '../SearchBox/SearchBox'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useAppDispatch } from '../../app/reduxHooks'
-import { setIsDrawerOpen } from '../../features/LeftDrawer/leftDrawerSlice'
+import { setIsLeftDrawerOpen } from '../../features/LeftDrawer/leftDrawerSlice'
+import { Link } from 'react-router-dom'
+import { setIsTopDrawerOpen } from '../../features/TopDrawer/topDrawerSlice'
 
 const generateStyle = () => {
   return {
@@ -40,6 +42,9 @@ const generateStyle = () => {
     },
     menuIconStyle: {
       color: '#151515',
+    },
+    linkStyle: {
+      textDecoration: 'none',
     },
   }
 }
@@ -68,7 +73,13 @@ const NavbarMiddle = () => {
   const dispatch = useAppDispatch()
 
   const menuIconClickHandler = () => {
-    dispatch(setIsDrawerOpen({ isDrawerOpen: true }))
+    dispatch(setIsLeftDrawerOpen({ isLeftDrawerOpen: true }))
+  }
+
+  const searchIconClickHandler = () => {
+    console.log('Top')
+
+    dispatch(setIsTopDrawerOpen({ isTopDrawerOpen: true }))
   }
 
   return (
@@ -83,17 +94,21 @@ const NavbarMiddle = () => {
           <SearchBox />
         </Box>
         <Box>
-          <CustomInvisibleIconButton>
+          <CustomInvisibleIconButton onClick={searchIconClickHandler}>
             <SearchIcon style={classes.searchIconStyle} />
           </CustomInvisibleIconButton>
-          <CustomVisibleIconButton>
-            <UserIcon />
-          </CustomVisibleIconButton>
-          <CustomVisibleIconButton>
-            <Badge badgeContent={4} color='primary'>
-              <CartIcon />
-            </Badge>
-          </CustomVisibleIconButton>
+          <Link to='/login' style={classes.linkStyle}>
+            <CustomVisibleIconButton>
+              <UserIcon />
+            </CustomVisibleIconButton>
+          </Link>
+          <Link to='/cart' style={classes.linkStyle}>
+            <CustomVisibleIconButton>
+              <Badge badgeContent={4} color='primary'>
+                <CartIcon />
+              </Badge>
+            </CustomVisibleIconButton>
+          </Link>
           <CustomInvisibleIconButton onClick={menuIconClickHandler}>
             <MenuIcon sx={classes.menuIconStyle} />
           </CustomInvisibleIconButton>

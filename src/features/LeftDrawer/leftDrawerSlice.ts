@@ -3,24 +3,27 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 
 export interface LeftDrawerStateModel {
-  isDrawerOpen: boolean
+  isLeftDrawerOpen: boolean
 }
 
 export const initialState: LeftDrawerStateModel = {
-  isDrawerOpen: false,
+  isLeftDrawerOpen: false,
 }
 
 const leftDrawerSlice = createSlice({
   name: 'leftDrawer',
   initialState,
   reducers: {
-    setIsDrawerOpen: (state, action: PayloadAction<LeftDrawerStateModel>) => {
-      state.isDrawerOpen = action.payload.isDrawerOpen
+    setIsLeftDrawerOpen: (
+      state,
+      action: PayloadAction<LeftDrawerStateModel>
+    ) => {
+      state.isLeftDrawerOpen = action.payload.isLeftDrawerOpen
     },
   },
 })
 
-export const { setIsDrawerOpen } = leftDrawerSlice.actions
+export const { setIsLeftDrawerOpen } = leftDrawerSlice.actions
 
 export const leftDrawerSelector = (state: RootState) => state.leftDrawer
 

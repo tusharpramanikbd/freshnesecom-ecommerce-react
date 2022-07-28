@@ -1,4 +1,5 @@
 import { Box, Button, Container, Divider } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const generateStyle = () => {
   return {
@@ -19,6 +20,9 @@ const generateStyle = () => {
     dividerStyle: {
       margin: '0 0 24px 0',
     },
+    linkStyle: {
+      textDecoration: 'none',
+    },
   }
 }
 
@@ -29,26 +33,38 @@ const NavbarTop = () => {
     <Container maxWidth='lg'>
       <Box sx={classes.rootContainerStyle}>
         <Box sx={classes.innerContainerStyle}>
-          <Button color='primary' size='small' sx={classes.buttonStyle}>
-            Chat with us
-          </Button>
-          <Button color='primary' size='small' sx={classes.buttonStyle}>
-            +420 336 775 664
-          </Button>
-          <Button color='primary' size='small' sx={classes.buttonStyle}>
-            info@freshnesecom.com
-          </Button>
+          <Link to='/chat' style={classes.linkStyle}>
+            <Button color='primary' size='small' sx={classes.buttonStyle}>
+              Chat with us
+            </Button>
+          </Link>
+          <Link to='/call' style={classes.linkStyle}>
+            <Button color='primary' size='small' sx={classes.buttonStyle}>
+              +420 336 775 664
+            </Button>
+          </Link>
+          <Link to='/email' style={classes.linkStyle}>
+            <Button color='primary' size='small' sx={classes.buttonStyle}>
+              info@freshnesecom.com
+            </Button>
+          </Link>
         </Box>
         <Box sx={classes.innerContainerStyle}>
-          <Button color='primary' size='small' sx={classes.buttonStyle}>
-            Blog
-          </Button>
-          <Button color='primary' size='small' sx={classes.buttonStyle}>
-            About Us
-          </Button>
-          <Button color='primary' size='small' sx={classes.buttonStyle}>
-            Careers
-          </Button>
+          <Link to='/blog' style={classes.linkStyle}>
+            <Button color='primary' size='small' sx={classes.buttonStyle}>
+              Blog
+            </Button>
+          </Link>
+          <Link to='/aboutus' style={classes.linkStyle}>
+            <Button color='primary' size='small' sx={classes.buttonStyle}>
+              About Us
+            </Button>
+          </Link>
+          <Link to='/careers' style={classes.linkStyle}>
+            <Button color='primary' size='small' sx={classes.buttonStyle}>
+              Careers
+            </Button>
+          </Link>
         </Box>
       </Box>
       <Divider sx={classes.dividerStyle} />

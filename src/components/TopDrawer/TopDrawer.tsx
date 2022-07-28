@@ -11,17 +11,19 @@ import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import {
-  leftDrawerSelector,
-  setIsLeftDrawerOpen,
-} from '../../features/LeftDrawer/leftDrawerSlice'
+  topDrawerSelector,
+  setIsTopDrawerOpen,
+} from '../../features/TopDrawer/topDrawerSlice'
 
-const LeftDrawer = () => {
-  const { isLeftDrawerOpen } = useAppSelector(leftDrawerSelector)
+const TopDrawer = () => {
+  const { isTopDrawerOpen } = useAppSelector(topDrawerSelector)
+
+  console.log(isTopDrawerOpen)
 
   const dispatch = useAppDispatch()
 
   const list = () => (
-    <Box sx={{ width: '250px' }}>
+    <Box>
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -52,13 +54,13 @@ const LeftDrawer = () => {
 
   return (
     <Drawer
-      anchor='left'
-      open={isLeftDrawerOpen}
-      onClose={() => dispatch(setIsLeftDrawerOpen({ isLeftDrawerOpen: false }))}
+      anchor='top'
+      open={isTopDrawerOpen}
+      onClose={() => dispatch(setIsTopDrawerOpen({ isTopDrawerOpen: false }))}
     >
       {list()}
     </Drawer>
   )
 }
 
-export default LeftDrawer
+export default TopDrawer
