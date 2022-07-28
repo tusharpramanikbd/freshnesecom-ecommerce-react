@@ -77,8 +77,6 @@ const NavbarMiddle = () => {
   }
 
   const searchIconClickHandler = () => {
-    console.log('Top')
-
     dispatch(setIsTopDrawerOpen({ isTopDrawerOpen: true }))
   }
 
@@ -91,7 +89,7 @@ const NavbarMiddle = () => {
           <WebsiteLogo style={{ width: '140px', height: '14px' }} />
         )}
         <Box sx={classes.searchboxContainerStyle}>
-          <SearchBox />
+          {!matches && <SearchBox />}
         </Box>
         <Box>
           <CustomInvisibleIconButton onClick={searchIconClickHandler}>

@@ -8,12 +8,13 @@ import {
   styled,
   TextField,
   Theme,
+  useMediaQuery,
   useTheme,
 } from '@mui/material'
 import React, { Dispatch, SetStateAction } from 'react'
 import SearchIcon from '../../icons/SearchIcon'
 
-const generateStyles = (theme: Theme) => {
+const generateStyles = (theme: Theme, matches: boolean) => {
   return {
     searchContainer: {
       width: '510px',
@@ -22,13 +23,14 @@ const generateStyles = (theme: Theme) => {
       borderRadius: '12px',
       display: 'flex',
       flexDirection: 'row',
-      paddingRight: '13px',
+      paddingRight: matches === false ? '8px' : '0px',
       alignItems: 'center',
     },
     selectStyle: {
-      width: '220px',
+      width: matches === false ? '220px' : '150px',
       height: '40px',
       fontWeight: 'bold',
+      fontSize: matches === false ? '1rem' : '12px',
       textAlign: 'center',
       '& .MuiOutlinedInput-notchedOutline': {
         border: '0px',
@@ -41,14 +43,14 @@ const generateStyles = (theme: Theme) => {
       width: '1px',
       height: '25px',
       backgroundColor: '#D1D1D1',
-      margin: '0 14px',
+      margin: matches === false ? '0 14px' : '0',
     },
     inputFieldStyle: {
       width: '250px',
       '& .MuiOutlinedInput-notchedOutline': {
         border: '0px',
       },
-      fontSize: '14px',
+      fontSize: matches === false ? '14px' : '12px',
     },
     iconStyle: {
       width: '18px',
@@ -80,15 +82,10 @@ const data = [
   },
 ]
 
-const ResponsiveFormControl = styled(FormControl)(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    display: 'none',
-  },
-}))
-
 const SearchBox = () => {
   const theme = useTheme()
-  const classes = generateStyles(theme)
+  const matches = useMediaQuery(theme.breakpoints.down('sm'))
+  const classes = generateStyles(theme, matches)
 
   const [dropDownValue, setDropDownValue] = React.useState(data[0].value)
 
@@ -100,7 +97,7 @@ const SearchBox = () => {
   }
 
   return (
-    <ResponsiveFormControl sx={classes.searchContainer}>
+    <FormControl sx={classes.searchContainer}>
       <Select
         onChange={(event: SelectChangeEvent) =>
           handleChange(event, setDropDownValue)
@@ -129,7 +126,7 @@ const SearchBox = () => {
       <IconButton aria-label='search'>
         <SearchIcon style={classes.iconStyle} />
       </IconButton>
-    </ResponsiveFormControl>
+    </FormControl>
   )
 }
 

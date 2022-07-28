@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
@@ -14,43 +14,20 @@ import {
   topDrawerSelector,
   setIsTopDrawerOpen,
 } from '../../features/TopDrawer/topDrawerSlice'
+import TopDrawerContent from './TopDrawerContent'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 const TopDrawer = () => {
   const { isTopDrawerOpen } = useAppSelector(topDrawerSelector)
-
-  console.log(isTopDrawerOpen)
-
   const dispatch = useAppDispatch()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('md'))
 
-  const list = () => (
-    <Box>
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  )
+  useEffect(() => {
+    if (matches) {
+      dispatch(setIsTopDrawerOpen({ isTopDrawerOpen: false }))
+    }
+  }, [matches])
 
   return (
     <Drawer
@@ -58,7 +35,7 @@ const TopDrawer = () => {
       open={isTopDrawerOpen}
       onClose={() => dispatch(setIsTopDrawerOpen({ isTopDrawerOpen: false }))}
     >
-      {list()}
+      <TopDrawerContent />
     </Drawer>
   )
 }
