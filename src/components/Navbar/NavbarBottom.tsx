@@ -3,11 +3,16 @@ import ArrowDownIcon from '../../icons/ArrowDownIcon'
 
 import menuCategoryData from '../../data/menuCategoryData'
 import SubMenu from './SubMenu'
-import { useState } from 'react'
 
-import { useAppDispatch } from '../../app/reduxHooks'
-import { setSubMenuPosition } from '../../features/SubMenu/subMenuSlice'
+import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
+import {
+  setIsSubMenuVisible,
+  setSubMenuPosition,
+  subMenuSelector,
+} from '../../features/SubMenu/subMenuSlice'
 import { Link } from 'react-router-dom'
+import { useTransition, animated } from 'react-spring'
+import closestEdge from '../../utils/MouseEvent'
 
 const generateStyle = () => {
   return {
@@ -25,7 +30,7 @@ const generateStyle = () => {
     },
     menuContainerStyle: {
       display: 'flex',
-      columnGap: '16px',
+      columnGap: '8px',
       padding: '0 16px',
     },
     buttonStyle: {
@@ -48,27 +53,35 @@ const generateStyle = () => {
 }
 
 const NavbarBottom = () => {
-  const [isSubMenuVisible, setIsSubMenuVisible] = useState(false)
   const classes = generateStyle()
   const dispatch = useAppDispatch()
+  const { isSubMenuVisible } = useAppSelector(subMenuSelector)
+
+  const AnimatedSubMenu = animated(SubMenu)
+  const transition = useTransition(isSubMenuVisible, {
+    from: { x: 0, y: 10, opacity: 0, transform: 'translateX(-50%)' },
+    enter: { x: 0, y: 0, opacity: 1, transform: 'translateX(-50%)' },
+    leave: { x: 0, y: 10, opacity: 0, transform: 'translateX(-50%)' },
+  })
 
   const handleMenuEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
     const text = e.currentTarget.textContent?.trim()
     const tempBtn = e.currentTarget.getBoundingClientRect()
     const center = (tempBtn.left + tempBtn.right) / 2
-    const bottom = tempBtn.bottom - 3
+    const bottom = tempBtn.bottom
 
     const tempPage = menuCategoryData.find(({ menu }) => menu === text)
 
     if (tempPage) {
-      dispatch(
-        setSubMenuPosition({
-          top: bottom,
-          left: center,
-          subMenus: tempPage.subMenus,
-        })
-      )
-      setIsSubMenuVisible(true)
+      setTimeout(() => {
+        dispatch(
+          setSubMenuPosition({
+            top: bottom,
+            left: center,
+            subMenus: tempPage.subMenus,
+          })
+        )
+      }, 150)
     }
   }
 
@@ -81,12 +94,18 @@ const NavbarBottom = () => {
         element.getAttribute('id') === 'navbar-bottom-container' ||
         element.getAttribute('id') === 'navbar-bottom-container-outer')
     ) {
-      setIsSubMenuVisible(false)
+      dispatch(setIsSubMenuVisible({ isSubMenuVisible: false }))
     }
   }
 
   const handleEmptyBoxEnter = () => {
-    setIsSubMenuVisible(false)
+    dispatch(setIsSubMenuVisible({ isSubMenuVisible: false }))
+  }
+
+  const handleMenuLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (closestEdge(e) !== 'bottom') {
+      dispatch(setIsSubMenuVisible({ isSubMenuVisible: false }))
+    }
   }
 
   return (
@@ -107,6 +126,7 @@ const NavbarBottom = () => {
               <Link to={item.link} key={item.id} style={classes.linkStyle}>
                 <Button
                   onMouseEnter={handleMenuEnter}
+                  onMouseLeave={handleMenuLeave}
                   color='secondary'
                   sx={classes.buttonStyle}
                 >
@@ -117,7 +137,7 @@ const NavbarBottom = () => {
             ))}
           </Box>
         </Container>
-        {isSubMenuVisible && <SubMenu />}
+        {transition((style, item) => item && <AnimatedSubMenu style={style} />)}
       </Box>
     </Box>
   )

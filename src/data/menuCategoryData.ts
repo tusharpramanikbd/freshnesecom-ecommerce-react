@@ -6,23 +6,23 @@ const menuCategoryData = [
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 1',
+        subMenu: 'Bars',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 2',
+        subMenu: 'Breads',
       },
       {
         id: '3',
-        subMenu: 'SubMenu 3',
+        subMenu: 'Cookies',
       },
       {
         id: '4',
-        subMenu: 'SubMenu 4',
+        subMenu: 'Desserts',
       },
       {
         id: '5',
-        subMenu: 'SubMenu 5',
+        subMenu: 'Muffins',
       },
     ],
   },
@@ -33,23 +33,11 @@ const menuCategoryData = [
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 6',
+        subMenu: 'Fruits',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 7',
-      },
-      {
-        id: '3',
-        subMenu: 'SubMenu 8',
-      },
-      {
-        id: '4',
-        subMenu: 'SubMenu 9',
-      },
-      {
-        id: '5',
-        subMenu: 'SubMenu 10',
+        subMenu: 'Vegetables',
       },
     ],
   },
@@ -60,23 +48,15 @@ const menuCategoryData = [
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 11',
+        subMenu: 'Fish',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 12',
+        subMenu: 'Red meat',
       },
       {
         id: '3',
-        subMenu: 'SubMenu 13',
-      },
-      {
-        id: '4',
-        subMenu: 'SubMenu 14',
-      },
-      {
-        id: '5',
-        subMenu: 'SubMenu 15',
+        subMenu: 'White meat',
       },
     ],
   },
@@ -87,23 +67,15 @@ const menuCategoryData = [
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 16',
+        subMenu: 'Water',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 17',
+        subMenu: 'Hard drinks',
       },
       {
         id: '3',
-        subMenu: 'SubMenu 18',
-      },
-      {
-        id: '4',
-        subMenu: 'SubMenu 19',
-      },
-      {
-        id: '5',
-        subMenu: 'SubMenu 20',
+        subMenu: 'Soft drinks',
       },
     ],
   },
@@ -114,23 +86,19 @@ const menuCategoryData = [
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 21',
+        subMenu: 'Gas Stove',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 22',
+        subMenu: 'Rice cooker',
       },
       {
         id: '3',
-        subMenu: 'SubMenu 23',
+        subMenu: 'Frying pan',
       },
       {
         id: '4',
-        subMenu: 'SubMenu 24',
-      },
-      {
-        id: '5',
-        subMenu: 'SubMenu 25',
+        subMenu: 'Kitchen knife',
       },
     ],
   },
@@ -141,50 +109,30 @@ const menuCategoryData = [
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 26',
+        subMenu: 'Nutritious Food',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 27',
-      },
-      {
-        id: '3',
-        subMenu: 'SubMenu 28',
-      },
-      {
-        id: '4',
-        subMenu: 'SubMenu 29',
-      },
-      {
-        id: '5',
-        subMenu: 'SubMenu 30',
+        subMenu: 'Nutritious Supplement',
       },
     ],
   },
   {
     id: '7',
-    menu: 'Baby',
-    link: '/baby',
+    menu: 'Baby Product',
+    link: '/babyproduct',
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 31',
+        subMenu: 'Baby food',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 32',
+        subMenu: 'Baby diapers',
       },
       {
         id: '3',
-        subMenu: 'SubMenu 33',
-      },
-      {
-        id: '4',
-        subMenu: 'SubMenu 34',
-      },
-      {
-        id: '5',
-        subMenu: 'SubMenu 35',
+        subMenu: 'Baby cosmatics',
       },
     ],
   },
@@ -195,23 +143,15 @@ const menuCategoryData = [
     subMenus: [
       {
         id: '1',
-        subMenu: 'SubMenu 36',
+        subMenu: 'Prescription medicine',
       },
       {
         id: '2',
-        subMenu: 'SubMenu 37',
+        subMenu: 'Non Prescription medicine',
       },
       {
         id: '3',
-        subMenu: 'SubMenu 38',
-      },
-      {
-        id: '4',
-        subMenu: 'SubMenu 39',
-      },
-      {
-        id: '5',
-        subMenu: 'SubMenu 40',
+        subMenu: 'Natural medicine',
       },
     ],
   },

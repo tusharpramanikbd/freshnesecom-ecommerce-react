@@ -5,7 +5,6 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  styled,
   TextField,
   Theme,
   useMediaQuery,
@@ -13,6 +12,7 @@ import {
 } from '@mui/material'
 import React, { Dispatch, SetStateAction } from 'react'
 import SearchIcon from '../../icons/SearchIcon'
+import dropDownMenuCategoryData from '../../data/dropDownMenuCategoryData'
 
 const generateStyles = (theme: Theme, matches: boolean) => {
   return {
@@ -59,35 +59,14 @@ const generateStyles = (theme: Theme, matches: boolean) => {
   }
 }
 
-const data = [
-  {
-    id: '1',
-    value: 'All Categories',
-  },
-  {
-    id: '2',
-    value: 'Bekary',
-  },
-  {
-    id: '3',
-    value: 'Fruits and vegetables',
-  },
-  {
-    id: '4',
-    value: 'Meat and fish',
-  },
-  {
-    id: '5',
-    value: 'Drinks',
-  },
-]
-
 const SearchBox = () => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('sm'))
   const classes = generateStyles(theme, matches)
 
-  const [dropDownValue, setDropDownValue] = React.useState(data[0].value)
+  const [dropDownValue, setDropDownValue] = React.useState(
+    dropDownMenuCategoryData[0].value
+  )
 
   const handleChange = (
     event: SelectChangeEvent,
@@ -105,7 +84,7 @@ const SearchBox = () => {
         value={dropDownValue}
         sx={classes.selectStyle}
       >
-        {data.map((item) => (
+        {dropDownMenuCategoryData.map((item) => (
           <MenuItem key={item.id} value={item.value}>
             {item.value}
           </MenuItem>
