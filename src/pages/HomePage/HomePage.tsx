@@ -1,28 +1,33 @@
-import { Box } from '@mui/material'
-import React from 'react'
-import LeftDrawer from '../../components/LeftDrawer/LeftDrawer'
-import Navbar from '../../components/Navbar/Navbar'
-import TopDrawer from '../../components/TopDrawer/TopDrawer'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
+import { useAppDispatch } from '../../app/reduxHooks'
+import { setIsSubMenuVisible } from '../../features/SubMenu/subMenuSlice'
 
-const generateStyle = () => {
+const generateStyle = (matches: boolean) => {
   return {
     rootContainerStyle: {
       width: '100%',
-      minHeight: '100vh',
-      // backgroundColor: '#f4c2c2',
+      minHeight: matches ? 'calc(100vh - 56px)' : 'calc(100vh - 213.75px)',
+      backgroundColor: '#f4c2c2',
     },
   }
 }
 
 const HomePage = () => {
-  const classes = generateStyle()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.down('md'))
+
+  const classes = generateStyle(matches)
+  const dispatch = useAppDispatch()
+
+  const handleComponentMouseOver = () => {
+    dispatch(setIsSubMenuVisible({ isSubMenuVisible: false }))
+  }
 
   return (
-    <Box sx={classes.rootContainerStyle}>
-      <Navbar />
-      <LeftDrawer />
-      <TopDrawer />
-    </Box>
+    <Box
+      onMouseOver={handleComponentMouseOver}
+      sx={classes.rootContainerStyle}
+    ></Box>
   )
 }
 

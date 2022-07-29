@@ -18,14 +18,15 @@ import { useAppDispatch } from '../../app/reduxHooks'
 import { setIsLeftDrawerOpen } from '../../features/LeftDrawer/leftDrawerSlice'
 import { Link } from 'react-router-dom'
 import { setIsTopDrawerOpen } from '../../features/TopDrawer/topDrawerSlice'
+import { setIsSubMenuVisible } from '../../features/SubMenu/subMenuSlice'
 
-const generateStyle = () => {
+const generateStyle = (matches: boolean) => {
   return {
     rootContainerStyle: {
       display: 'flex',
       alignItems: 'center',
       paddingTop: '8px',
-      marginBottom: '16px',
+      marginBottom: matches ? '8px' : '32px',
     },
     searchboxContainerStyle: {
       flexGrow: 1,
@@ -65,10 +66,10 @@ const CustomVisibleIconButton = styled(IconButton)(({ theme }) => ({
 }))
 
 const NavbarMiddle = () => {
-  const classes = generateStyle()
-
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
+
+  const classes = generateStyle(matches)
 
   const dispatch = useAppDispatch()
 
@@ -80,8 +81,12 @@ const NavbarMiddle = () => {
     dispatch(setIsTopDrawerOpen({ isTopDrawerOpen: true }))
   }
 
+  const handleComponentMouseOver = () => {
+    dispatch(setIsSubMenuVisible({ isSubMenuVisible: false }))
+  }
+
   return (
-    <Container maxWidth='lg'>
+    <Container onMouseOver={handleComponentMouseOver} maxWidth='lg'>
       <Box sx={classes.rootContainerStyle}>
         {!matches ? (
           <WebsiteLogo />

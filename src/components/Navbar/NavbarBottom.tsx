@@ -98,10 +98,6 @@ const NavbarBottom = () => {
     }
   }
 
-  const handleEmptyBoxEnter = () => {
-    dispatch(setIsSubMenuVisible({ isSubMenuVisible: false }))
-  }
-
   const handleMenuLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (closestEdge(e) !== 'bottom') {
       dispatch(setIsSubMenuVisible({ isSubMenuVisible: false }))
@@ -110,12 +106,16 @@ const NavbarBottom = () => {
 
   return (
     <Box sx={classes.outerRootContainerStyle}>
-      <Box onMouseOver={handleEmptyBoxEnter} sx={classes.emptyBoxStyle}></Box>
-      <Box id='navbar-bottom-container-outer' sx={classes.rootContainerStyle}>
+      <Box
+        id='navbar-bottom-container-outer'
+        sx={classes.rootContainerStyle}
+        onMouseOver={handleNavEnter}
+      >
         <Container
           id='navbar-bottom-container'
           maxWidth='lg'
           sx={classes.innerContainerStyle}
+          onMouseOver={handleNavEnter}
         >
           <Box
             id='navbar-bottom'
