@@ -18,7 +18,7 @@ const generateStyle = () => {
       marginBottom: '16px',
     },
     closeIconStyle: {
-      color: '#151515',
+      color: 'red',
     },
     searchBoxContainerStyle: {
       display: 'flex',

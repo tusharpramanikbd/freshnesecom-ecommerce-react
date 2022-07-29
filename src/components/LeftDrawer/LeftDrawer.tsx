@@ -1,54 +1,24 @@
-import React from 'react'
-import Box from '@mui/material/Box'
+import { useMediaQuery, useTheme } from '@mui/material'
 import Drawer from '@mui/material/Drawer'
-import List from '@mui/material/List'
-import Divider from '@mui/material/Divider'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import {
   leftDrawerSelector,
   setIsLeftDrawerOpen,
 } from '../../features/LeftDrawer/leftDrawerSlice'
+import LeftDrawerContent from './LeftDrawerContent'
 
 const LeftDrawer = () => {
   const { isLeftDrawerOpen } = useAppSelector(leftDrawerSelector)
-
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('md'))
   const dispatch = useAppDispatch()
 
-  const list = () => (
-    <Box sx={{ width: '250px' }}>
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  )
+  useEffect(() => {
+    if (matches) {
+      dispatch(setIsLeftDrawerOpen({ isLeftDrawerOpen: false }))
+    }
+  }, [matches])
 
   return (
     <Drawer
@@ -56,7 +26,7 @@ const LeftDrawer = () => {
       open={isLeftDrawerOpen}
       onClose={() => dispatch(setIsLeftDrawerOpen({ isLeftDrawerOpen: false }))}
     >
-      {list()}
+      <LeftDrawerContent />
     </Drawer>
   )
 }
