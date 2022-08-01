@@ -1,6 +1,7 @@
 import { Box, Container, Grid, useMediaQuery, useTheme } from '@mui/material'
 import Banner from '../Banner/Banner'
 import CategoryListSection from '../CategoryListSection/CategoryListSection'
+import menuCategoryData from '../../../data/menuCategoryData'
 
 const generateStyle = (matchesMD: boolean, matchesSM: boolean) => {
   return {
@@ -31,7 +32,11 @@ const HomeCategorySection = () => {
       >
         <Grid item xs={12} md={3} order={{ xs: 3, md: 1 }}>
           <Box sx={classes.boxStyle}>
-            <CategoryListSection />
+            <CategoryListSection
+              categoryTitle='Category menu'
+              categoryData={menuCategoryData}
+              buttonText='More categories'
+            />
           </Box>
         </Grid>
         <Grid item xs={12} md={4.5} order={{ xs: 1, md: 2 }}>

@@ -1,7 +1,7 @@
 import { Box, Button, Theme, Typography, useTheme } from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import menuCategoryData from '../../../data/menuCategoryData'
 import { Link } from 'react-router-dom'
+import CategoryListPropsType from '../../../@types/CategoryListPropsType'
 
 const generateStyle = (theme: Theme) => {
   return {
@@ -20,6 +20,7 @@ const generateStyle = (theme: Theme) => {
       textTransform: 'none',
       fontSize: '0.938rem',
       fontWeight: 700,
+      color: '#000000',
     },
     CategoryMenuTitleStyle: {
       fontSize: '1.125rem',
@@ -32,10 +33,17 @@ const generateStyle = (theme: Theme) => {
       fontSize: '0.875rem',
       color: theme.palette.primary.main,
     },
+    iconStyle: {
+      color: theme.palette.primary.main,
+    },
   }
 }
 
-const CategoryListSection = () => {
+const CategoryListSection = ({
+  categoryTitle,
+  categoryData,
+  buttonText,
+}: CategoryListPropsType) => {
   const theme = useTheme()
   const classes = generateStyle(theme)
 
@@ -43,16 +51,16 @@ const CategoryListSection = () => {
     <Box sx={classes.rootComponentStyle}>
       <Box>
         <Typography sx={classes.CategoryMenuTitleStyle}>
-          Category Menu
+          {categoryTitle}
         </Typography>
-        {menuCategoryData.slice(0, 5).map((item) => (
+        {categoryData.slice(0, 5).map((item) => (
           <Link to={item.link} key={item.id} style={classes.menuStyle}>
             {item.menu}
           </Link>
         ))}
       </Box>
       <Button sx={classes.buttonStyle}>
-        More categories <KeyboardArrowRightIcon />{' '}
+        {buttonText} <KeyboardArrowRightIcon sx={classes.iconStyle} />{' '}
       </Button>
     </Box>
   )
