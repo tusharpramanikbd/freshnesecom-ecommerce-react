@@ -8,7 +8,7 @@ const generateStyle = (matchesMD: boolean) => {
   return {
     rootComponentStyle: {
       width: '100%',
-      margin: matchesMD ? '16px 0' : '0 auto',
+      margin: matchesMD ? '16px 0' : '64px auto',
     },
     boxStyle: {
       width: '100%',
@@ -17,7 +17,7 @@ const generateStyle = (matchesMD: boolean) => {
   }
 }
 
-const BestSellingProductsSection = () => {
+const BestFromFarmerSection = () => {
   const theme = useTheme()
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'))
   const classes = generateStyle(matchesMD)
@@ -33,7 +33,7 @@ const BestSellingProductsSection = () => {
         <Grid item xs={12} md={3} order={{ xs: 2, md: 1 }}>
           <Box sx={classes.boxStyle}>
             <CategoryListSection
-              categoryTitle='Best selling products'
+              categoryTitle='Best from Farmers'
               categoryData={menuCategoryData}
               buttonText='More products'
             />
@@ -49,4 +49,4 @@ const BestSellingProductsSection = () => {
   )
 }
 
-export default BestSellingProductsSection
+export default BestFromFarmerSection

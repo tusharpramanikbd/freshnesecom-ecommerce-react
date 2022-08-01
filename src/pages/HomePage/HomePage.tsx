@@ -1,5 +1,6 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { useAppDispatch } from '../../app/reduxHooks'
+import BestFromFarmerSection from '../../components/HomePage/BestFromFarmerSection/BestFromFarmerSection'
 import BestSellingProductsSection from '../../components/HomePage/BestSellingProductsSection/BestSellingProductsSection'
 import HomeCategorySection from '../../components/HomePage/HomeCategorySection/HomeCategorySection'
 import { setIsSubMenuVisible } from '../../features/SubMenu/subMenuSlice'
@@ -28,6 +29,7 @@ const HomePage = () => {
     <Box onMouseOver={handleComponentMouseOver} sx={classes.rootContainerStyle}>
       <HomeCategorySection />
       <BestSellingProductsSection />
+      <BestFromFarmerSection />
     </Box>
   )
 }
