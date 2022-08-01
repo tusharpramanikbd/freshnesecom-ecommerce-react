@@ -6,6 +6,7 @@ import {
   ListItemButton,
   ListItemText,
   Theme,
+  useMediaQuery,
   useTheme,
 } from '@mui/material'
 import { useAppSelector } from '../../app/reduxHooks'
@@ -14,11 +15,12 @@ import { subMenuSelector } from '../../features/SubMenu/subMenuSlice'
 const generateStyle = (
   theme: Theme,
   top: number | null,
-  left: number | null
+  left: number | null,
+  matches: boolean
 ) => {
   return {
     rootContainerStyle: {
-      width: '100%',
+      width: !matches ? '100%' : '150px',
       maxWidth: '15rem',
       backgroundColor: 'white',
       boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
@@ -53,7 +55,8 @@ const SubMenu = ({ style }: any) => {
   const { top, left, subMenus } = useAppSelector(subMenuSelector)
 
   const theme = useTheme()
-  const classes = generateStyle(theme, top, left)
+  const matches = useMediaQuery('(max-width:1255px)')
+  const classes = generateStyle(theme, top, left, matches)
 
   return (
     <Box style={style} sx={classes.rootContainerStyle}>

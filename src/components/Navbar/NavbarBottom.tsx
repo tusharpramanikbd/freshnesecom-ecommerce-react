@@ -1,4 +1,4 @@
-import { Box, Button, Container } from '@mui/material'
+import { Box, Button, Container, useMediaQuery } from '@mui/material'
 import ArrowDownIcon from '../../icons/ArrowDownIcon'
 
 import menuCategoryData from '../../data/menuCategoryData'
@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { useTransition, animated } from 'react-spring'
 import closestEdge from '../../utils/MouseEvent'
 
-const generateStyle = () => {
+const generateStyle = (matches: boolean) => {
   return {
     outerRootContainerStyle: {
       display: 'flex',
@@ -31,20 +31,15 @@ const generateStyle = () => {
     menuContainerStyle: {
       display: 'flex',
       columnGap: '8px',
-      padding: '0 16px',
     },
     buttonStyle: {
       textTransform: 'none',
-      fontSize: '16px',
+      fontSize: !matches ? '16px' : '14px',
       fontWeight: '500',
-      padding: '16px 16px',
+      padding: !matches ? '16px 16px' : '16px 12px',
     },
     arrowDownIconStyle: {
       marginLeft: '2px',
-    },
-    emptyBoxStyle: {
-      width: '100%',
-      height: '16px',
     },
     linkStyle: {
       textDecoration: 'none',
@@ -53,7 +48,8 @@ const generateStyle = () => {
 }
 
 const NavbarBottom = () => {
-  const classes = generateStyle()
+  const matches = useMediaQuery('(max-width:1148px)')
+  const classes = generateStyle(matches)
   const dispatch = useAppDispatch()
   const { isSubMenuVisible } = useAppSelector(subMenuSelector)
 
