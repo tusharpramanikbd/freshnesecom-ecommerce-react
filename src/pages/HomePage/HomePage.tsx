@@ -4,6 +4,7 @@ import BestFromFarmerSection from '../../components/HomePage/BestFromFarmerSecti
 import BestSellingProductsSection from '../../components/HomePage/BestSellingProductsSection/BestSellingProductsSection'
 import HomeCategorySection from '../../components/HomePage/HomeCategorySection/HomeCategorySection'
 import { setIsSubMenuVisible } from '../../features/SubMenu/subMenuSlice'
+import CustomerOpinionSection from '../../components/HomePage/CustomerOpinionSection/CustomerOpinionSection'
 
 const generateStyle = (matches: boolean) => {
   return {
@@ -30,6 +31,7 @@ const HomePage = () => {
       <HomeCategorySection />
       <BestSellingProductsSection />
       <BestFromFarmerSection />
+      <CustomerOpinionSection />
     </Box>
   )
 }
