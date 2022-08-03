@@ -1,6 +1,7 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import Footer from './components/Footer/Footer'
 import LeftDrawer from './components/LeftDrawer/LeftDrawer'
 import Navbar from './components/Navbar/Navbar'
 import TopDrawer from './components/TopDrawer/TopDrawer'
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/home' element={<HomePage />} />
       </Routes>
+      <Footer />
       <LeftDrawer />
       <TopDrawer />
     </ThemeProvider>
