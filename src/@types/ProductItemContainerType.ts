@@ -1,7 +1,7 @@
 import ProductItemType from './ProductItemType'
 
-interface ProductItemContainer3XType {
+interface ProductItemContainerType {
   productItems: ProductItemType[]
 }
 
-export default ProductItemContainer3XType
+export default ProductItemContainerType
